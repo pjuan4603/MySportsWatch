@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" xmlns:display="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sports Watch</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">
+            <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Sports watch
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ranking">Current Ranking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/myfavteam">My Favorite team</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/favteam">Select Favorite team</a>
+                </li>
+                <li th:if="${loginShow == true}" class="nav-item">
+                    <a class="nav-link" href="http://ec2-3-16-45-195.us-east-2.compute.amazonaws.com:9001/">Chat room</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login/Logout</a>
+                </li>
+                <li th:if="${show == true}" class="nav-item">
+                    <a class="nav-link" href="/admin">Admin Page</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+    </nav>
+
+</head>
+<body>
+<b th:if="${userID != null}"> Welcome User! </b>
+<b> Today's Games: </b>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Home Team</th>
+        <th scope="col">Scores</th>
+        <th scope="col">Away Team</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="dailySchedule : ${dailySchedule}">
+        <td th:text="${dailySchedule.homeTeam.Name}">Home Team</td>
+        <td><b>N/A</b></td>
+        <td th:text="${dailySchedule.awayTeam.Name}">Away Team</td>
+    </tr>
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="name : ${teamList}">
+        <td th:text="${name.getTeamName()}">name</td>
+    </tr>
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+</body>
+</html>
